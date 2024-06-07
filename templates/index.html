@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 mt-3 mb-3">
+            <h2 class="bg-info text-light text-center text-uppercase p-3">Přehled čtenářů</h2>
+            {% for čtenář in čtenáři %}
+            <div class="row mb-3">
+                <div class="col-lg-3">
+                    <img src="{{ čtenář.fotografie.url }}" alt="{{ čtenář.uživatelské_jméno }}" class="img-fluid">
+                </div>
+                <div class="col-lg-9">
+                    <h3><a href="#">{{ čtenář.uživatelské_jméno }}</a></h3>
+                    <p>Email: {{ čtenář.email }}</p>
+                    <p>Datum registrace: {{ čtenář.datum_registrace }}</p>
+                    {% if čtenář.aktivní %}
+                        <p>Status: Aktivní</p>
+                    {% else %}
+                        <p>Status: Neaktivní</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-4 bg-light mt-3 mb-3">
+            <h2 class="bg-secondary text-light text-center p-3">Přehled knihoven</h2>
+            <ul class="list-group">
+            {% for knihovna in knihovny %}
+                <li class="list-group-item">
+                    <h4><a href="#">{{ knihovna.název }}</a></h4>
+                    <p>Adresa: {{ knihovna.adresa }}</p>
+                    <p>Telefon: {{ knihovna.telefon }}</p>
+                    <p>Email: {{ knihovna.email }}</p>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
